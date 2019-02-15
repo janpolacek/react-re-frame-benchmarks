@@ -1,5 +1,5 @@
 {
-  "name": "@reduxjs/react-redux-benchmarks",
+  "name": "@nike-re-framejs/react-re-frame-benchmarks",
   "version": "0.1.0",
   "description": "benchmark suite and runner for react-redux",
   "main": "index.js",
@@ -10,25 +10,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reduxjs/react-redux-benchmarks.git"
+    "url": "git+https://github.com:janpolacek/react-re-frame-benchmarks.git"
   },
   "keywords": [
-    "react-redux",
+    "react-re-frame",
     "benchmark",
-    "redux"
+    "re-frame"
   ],
-  "author": "Gregory Beaver <greg.beaver.cello@gmail.com>",
+  "author": "Jan Polacek <jan.polacek@nike.sk>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/reduxjs/react-redux-benchmarks/issues"
-  },
-  "homepage": "https://github.com/reduxjs/react-redux-benchmarks#readme",
+  "homepage": "https://github.com/janpolacek/react-re-frame-benchmarks#readme",
   "dependencies": {
     "cli-table2": "^0.2.0",
     "cross-spawn": "^6.0.5",
     "express": "^4.16.4",
-    "puppeteer": "^1.7.0",
-    "recursive-copy": "^2.0.9",
-    "tracealyzer": "^0.9.3"
+    "puppeteer": "^1.12.2",
+    "recursive-copy": "^2.0.10",
+    "tracealyzer": "^0.10.0"
   }
 }
