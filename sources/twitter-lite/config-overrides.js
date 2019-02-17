@@ -5,6 +5,7 @@ module.exports = function override(config, env) {
     if(env === "production") {
         config.externals = {
             "react" : "React",
+            "react-dom" : "ReactDOM",
             'rxjs': 'rxjs',
             'immutable': 'Immutable',
             'nike-re-framejs': 'reframe'
