@@ -3,42 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import 'fps-emit'
+import './handlers';
+import './subs';
 
-import * as c from './constants';
-import { updatePair, updateRandomPairInSlice } from './pairActions';
-
-import {Provider} from "react-redux";
-
-import configureStore from "./configureStore";
-
-const store = configureStore();
+import {updateRandomPairInSlice} from './actions';
 
 ReactDOM.render(
-    <Provider store={store} >
-        <App />
-    </Provider>,
+    <App />,
     document.getElementById('root')
 );
 
-/*
-function updateRandomPairInSlice() {
-    const sliceId = Math.floor(Math.random() * c.NUMBER_OF_SLICES);
-    const pairId = Math.floor(Math.random() * (c.NUM_ENTRIES / c.NUMBER_OF_SLICES));
-    store.dispatch(updatePair(sliceId, pairId));
-}
-*/
-function doRandomUpdate() {
-  store.dispatch(updateRandomPairInSlice());
-}
 
-//setInterval(updateRandomPairInSlice, 500);
+setInterval(updateRandomPairInSlice, 13);
 
+setInterval(updateRandomPairInSlice, 21);
 
-setInterval(doRandomUpdate, 13)
+setInterval(updateRandomPairInSlice, 34);
 
-setInterval(doRandomUpdate, 21)
-
-setInterval(doRandomUpdate, 34)
-
-setInterval(doRandomUpdate, 55)
+setInterval(updateRandomPairInSlice, 55);
 

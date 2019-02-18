@@ -1,38 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
+import React from 'react';
 import Pair from "./Pair";
-import { fillPairs } from "./pairActions";
+import { fillPairs } from "./actions";
+import * as reframe from 'nike-re-framejs';
 
-const actions = { fillPairs };
-
-const mapStateToProps = (state, props) => {
-    return {
-        slice: state[props.idx]
-    }
-}
-
-
-class Slice extends Component {
-    state = {};
-
-    componentDidMount = () => {
-        this.props.fillPairs(this.props.idx);
-    }
-
+const Slice = reframe.uix('Slice', {
+    componentDidMount() {
+        fillPairs(this.props.idx);
+    },
     render() {
-        const { slice, idx } = this.props;
+        const {idx} = this.props;
+        const pair_ids = this.derefSub(['pair_ids', idx]);
         return (
             <ul className='list-group'>
-                {slice.map((pair) => {
+                {pair_ids.map((id) => {
                     return (
-                        <Pair key={pair.id} sliceId={idx} pairId={pair.id} />
+                        <Pair key={id} sliceId={idx} pairId={id} />
                     )
                 })}
             </ul>
         );
     }
-}
-Slice.displayName = "Slice";
+});
 
-export default connect(mapStateToProps, actions)(Slice);
+export default Slice;

@@ -1,44 +1,21 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
-const mapState = (state, props) => state[props.sliceId][props.pairId]
-
-class Pair extends React.Component {
-    state = {
-        direction: 'up',
-        value: this.props.value
-    }
-
-    static getDerivedStateFromProps(props, state) {
-        if (props.value === state.value) return null;
-
-        const direction = props.value > state.value ? "up" : "down";
-
-        return {
-            value: props.value,
-            direction,
-        };
-    }
-
-    shouldComponentUpdate(nextProps) {
-        return this.props.value !== nextProps.value
-    }
-
+import * as reframe from 'nike-re-framejs';
+const Pair = reframe.uix('Pair', {
     render() {
-        const { direction } = this.state;
+        const {sliceId, pairId} = this.props;
+        const { direction = 'up' } = this.state;
+        const pair = this.derefSub(['pair', sliceId, pairId]);
 
         return (
             <li className='list-group-item'>
-                <span>{this.props.name}</span>
+                <span>{pair.get('name')}</span>
                 <span className={'pull-right ' + (direction === 'up' ? 'text-success' : 'text-warning')}>
-                    <span
-                        className={'glyphicon ' + (direction === 'up' ? 'glyphicon-arrow-up' : 'glyphicon-arrow-down')}></span>
-                    <span>{this.props.value}</span>
+                    <span className={'glyphicon ' + (direction === 'up' ? 'glyphicon-arrow-up' : 'glyphicon-arrow-down')}></span>
+                    <span>{pair.get('value')}</span>
                 </span>
             </li>
         )
     }
-}
-Pair.displayName = "Pair";
+});
 
-export default connect(mapState)(Pair)
+export default Pair;

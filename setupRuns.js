@@ -10,7 +10,7 @@ const copy = require('recursive-copy')
 console.log('clearing out old runs...')
 rimraf.sync(join(__dirname, 'runs', '*'))
 
-console.log(`installing global dependencies of all benchmarks...`)
+console.log(`installing global dependencies of all benchmarks...`);
 let installTask = spawn.sync('yarn', [''], {
   cwd: __dirname,
   stdio: 'inherit',
@@ -22,7 +22,7 @@ if (installTask.status > 0) {
 installTask = spawn.sync('yarn', [''], {
   cwd: join(__dirname, 'fps-emit'),
   stdio: 'inherit',
-})
+});
 if (installTask.status > 0) {
   process.exit(installTask.status);
 }
@@ -30,12 +30,12 @@ if (installTask.status > 0) {
 installTask = spawn.sync('yarn', ['build'], {
   cwd: join(__dirname, 'fps-emit'),
   stdio: 'inherit',
-})
+});
 if (installTask.status > 0) {
   process.exit(installTask.status);
 }
 
-const sources = readdirSync(join(__dirname, 'sources'))
+const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock'));;
 sources.forEach(benchmark => {
   const src = join(__dirname, 'sources', benchmark)
   let cwd
@@ -49,19 +49,19 @@ sources.forEach(benchmark => {
     process.exit(installTask.status);
   }
 
-  const filesToCopy = ["react.production.min.js", "react-dom.production.min.js", "redux.min.js"];
+  const filesToCopy = ["react.production.min.js", "react-dom.production.min.js", "immutable.min.js", "rxjs.umd.min.js", "reframe.min.js"];
 
   filesToCopy.forEach( filename => {
       copyFile(join(__dirname, 'copy-to-public', filename), join(src, 'public', filename), e => {
           if (e) {
-              console.log(e)
+              console.log(e);
               process.exit(1);
           }
       })
-  })
-    
+  });
 
-  console.log(`building production version of benchmark ${benchmark}...`)
+
+  console.log(`building production version of benchmark ${benchmark}...`);
   installTask = spawn.sync('npm', ['run', 'build'], {
     cwd,
     stdio: 'inherit',
@@ -73,4 +73,4 @@ sources.forEach(benchmark => {
   const dest = join(__dirname, 'runs', benchmark);
   copy(join(src, 'build'), dest);
 
-})
+});

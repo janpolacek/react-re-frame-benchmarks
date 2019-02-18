@@ -7,7 +7,7 @@
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "babel src --out-dir es",
-    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/react-redux.min.js",
+    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/reframe.min.js",
     "build": "yarn run build:commonjs && yarn run build:es && yarn run build:umd:min",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -41,8 +41,11 @@
     "npm-run": "^5.0.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "rxjs": "^6.4.0",
+    "nike-re-framejs": "3.2.0-rc.1",
+    "immutable": "^3.8.2",
+    "immutablediff": "^0.4.4",
     "react-testing-library": "^5.8.0",
-    "redux": "^4.0.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",

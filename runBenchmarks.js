@@ -8,18 +8,18 @@ const Table = require("cli-table2");
 const _ = require("lodash");
 
 
-const serverUtils = require('./utils/server.js')
+const serverUtils = require('./utils/server.js');
 
-const sources = readdirSync(join(__dirname, 'sources'))
+const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock'));
 
-const VERSIONS_FOLDER = join(__dirname, 'react-redux-versions');
+const VERSIONS_FOLDER = join(__dirname, 're-frame-versions');
 
 const versions = readdirSync(VERSIONS_FOLDER).map(version =>
-  version.replace('react-redux-', '').replace('.min.js', ''))
+  version.replace('reframe-', '').replace('.min.js', ''));
 
-const reduxVersions = process.env.REDUX ? process.env.REDUX.trim().split(':') : versions
-const benchmarksToRun = process.env.BENCHMARKS ? process.env.BENCHMARKS.split(':') : sources
-const length = process.env.SECONDS ? process.env.SECONDS : 30
+const reframeVersions = process.env.REFRAME ? process.env.REFRAME.trim().split(':') : versions;
+const benchmarksToRun = process.env.BENCHMARKS ? process.env.BENCHMARKS.split(':') : sources;
+const length = process.env.SECONDS ? process.env.SECONDS : 30;
 const trace = process.env.BENCHMARK_TRACE ? process.env.BENCHMARK_TRACE === "true" : true;
 
 // Given an array of items such as ["a", "b", "c", "d"], return the pairwise entries
@@ -44,18 +44,18 @@ async function runBenchmarks() {
     console.log(`Running benchmark ${benchmark}`)
 
 
-    for (let i = 0; i < reduxVersions.length; i++) {
-      const version = reduxVersions[i]
+    for (let i = 0; i < reframeVersions.length; i++) {
+      const version = reframeVersions[i]
       const toRun = join(source, version)
-      console.log(`  react-redux version: ${version}`)
+      console.log(`  reframe version: ${version}`)
       const browser = await puppeteer.launch({
         //headless: false
       });
 
       const URL = "http://localhost:9999";
       try {
-        const sourceFilePath = join(VERSIONS_FOLDER, `react-redux-${version}.min.js`);
-        const destFilePath = join(source, "react-redux.min.js")
+        const sourceFilePath = join(VERSIONS_FOLDER, `reframe-${version}.min.js`);
+        const destFilePath = join(source, "reframe.min.js");
         copyFileSync(sourceFilePath, destFilePath);
 
         const server = await serverUtils.runServer(9999, source);
