@@ -1,4 +1,4 @@
-# react-redux-benchmarks
+# react-re-framejs-benchmarks
 Performance benchmark harness for React-Redux
 
 This repo expects that you are using Yarn for package management.
@@ -20,13 +20,13 @@ yarn start
 To specify a single version:
 
 ```bash
-REDUX=5.0.7 yarn start
+REFRAME=5.0.7 yarn start
 ```
 
 To specify running against multiple versions:
 
 ```bash
-REDUX=5.0.7:4.4.9 yarn start
+REFRAME=5.0.7:4.4.9 yarn start
 ```
 
 To run a specific benchmark:
@@ -69,8 +69,9 @@ module.exports = function override(config, env) {
     if(env === "production") {
         config.externals = {
             "react" : "React",
-            "redux" : "Redux",
-            "react-redux" : "ReactRedux",
+            'rxjs': 'rxjs',
+            'immutable': 'Immutable',
+            'nike-re-framejs': 'reframe'
         }
     }
 
@@ -93,10 +94,11 @@ and the scripts section of `package.json` should be changed to:
 Also, `index.html` must be modified to include these lines:
 
 ```html
-    <script type="text/javascript" src="redux.min.js"></script>
     <script type="text/javascript" src="react.production.min.js"></script>
     <script type="text/javascript" src="react-dom.production.min.js"></script>
-    <script type="text/javascript" src="react-redux.min.js"></script>
+    <script type="text/javascript" src="immutable.min.js"></script>
+    <script type="text/javascript" src="rxjs.umd.min.js"></script>
+    <script type="text/javascript" src="reframe.min.js"></script>
 ```
 
 
