@@ -23,7 +23,7 @@ function onAppRendered(id, phase, actualTime, baseTime, startTime, commitTime, i
 
 ReactDOM.render(
     <Profiler id="appProfiler" onRender={onAppRendered}>
-   <App />
+        <App />
     </Profiler>,
   document.getElementById('root')
 );
