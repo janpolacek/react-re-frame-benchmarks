@@ -35,12 +35,12 @@ if (installTask.status > 0) {
   process.exit(installTask.status);
 }
 
-const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock'));;
+const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock') || s.includes('twitter'));
 sources.forEach(benchmark => {
-  const src = join(__dirname, 'sources', benchmark)
+  const src = join(__dirname, 'sources', benchmark);
   let cwd
   cwd = src
-  console.log(`installing dependencies of benchmark ${benchmark}...`)
+  console.log(`installing dependencies of benchmark ${benchmark}...`);
   let installTask = spawn.sync('yarn', [''], {
     cwd,
     stdio: 'inherit',

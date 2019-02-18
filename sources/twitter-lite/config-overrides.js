@@ -1,15 +1,16 @@
 module.exports = function override(config, env) {
     //do stuff with the webpack config...
-    console.log(`Environment: ${env}`)
+    console.log(`Environment: ${env}`);
 
     if(env === "production") {
         config.externals = {
             "react" : "React",
-            "redux" : "Redux",
-            "react-redux" : "ReactRedux",
+            'rxjs': 'rxjs',
+            'immutable': 'Immutable',
+            'nike-re-framejs': 'reframe'
         }
     }
 
 
     return config;
-}
+};

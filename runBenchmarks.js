@@ -10,7 +10,7 @@ const _ = require("lodash");
 
 const serverUtils = require('./utils/server.js');
 
-const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock'));
+const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock') || s.includes('twitter'));
 
 const VERSIONS_FOLDER = join(__dirname, 're-frame-versions');
 

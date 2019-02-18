@@ -1,41 +1,11 @@
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-import React, { Component } from 'react';
+import React from 'react';
+import * as reframe from 'nike-re-framejs';
 
-const exampleMapStateToProps = createSelector(
-  (state, props) => 'foobar',
-  (foo) => ({ foo })
-);
-
-const foobar = () => {};
-const exampleMapDispatchToProps = { foobar };
-
-class Internal extends Component {
-  render() {
+const TwitterLite = reframe.uix('TwitterLite', {
+  render({sliceId, tweetId}) {
+    const tweet = this.derefSub(['tweet', sliceId, tweetId]);
     return <div>barfoo</div>;
   }
-}
+});
 
-class InternalContainer extends Component {
-  render() {
-    return <Internal />;
-  }
-}
-
-const InternalContainerConnected = connect(exampleMapStateToProps, exampleMapDispatchToProps)(
-  InternalContainer
-);
-
-class Example extends Component {
-  render() {
-    return <InternalContainerConnected />;
-  }
-}
-
-class ExampleContainer extends Component {
-  render() {
-    return <Example />;
-  }
-}
-
-export default connect(exampleMapStateToProps, exampleMapDispatchToProps)(ExampleContainer);
+export default TwitterLite;

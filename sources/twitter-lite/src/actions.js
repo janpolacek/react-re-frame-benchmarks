@@ -1,8 +1,6 @@
-import * as c from './constants'
+import * as reframe from 'nike-re-framejs';
+import Immutable from 'immutable';
 
-export function addTweet (id) {
-    return {
-      type: `${c.ADD_TWEET}_${id}`,
-      tweet: 'fabulous'
-    }
-  }
+export function addTweet(id) {
+    reframe.dispatch(['addTweet', id, Immutable.fromJS({tweet: 'fabulous'})])
+}

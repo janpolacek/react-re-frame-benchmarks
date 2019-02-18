@@ -4,7 +4,7 @@ import {updateRandomPairInSlice} from "./actions";
 let slices = [0, 1, 2, 3];
 
 class App extends React.Component {
-    render () {
+    render() {
         return (
             <div>
                 <button onClick={updateRandomPairInSlice}>Update Random Pair</button>
@@ -23,6 +23,5 @@ class App extends React.Component {
         )
     }
 }
-App.displayName = "App";
 
 export default App;

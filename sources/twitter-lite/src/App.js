@@ -1,26 +1,23 @@
-import React, { Component } from 'react';
-import './App.css';
-import { connect } from 'react-redux'
+import React from 'react';
 import Slice from './Slice';
+import './App.css';
+const slices = [0, 1, 2];
 
-
-const mapState = (state) => ({  slices: Array(Object.keys(state).length).fill(0) });
-
-class App extends Component {
-  render() {
-    return (
-      <div className='row'>
-        {this.props.slices.map((slice, idx) => {
-          return (
-              <div className='col-lg-4' key={idx}>
-                  <Slice idx={idx} />
-              </div>
-          )
-        })}
-      </div>
-    );
-  }
+class App extends React.Component {
+    render() {
+        return (
+            <div className='row'>
+                {
+                    slices.map(sliceId => {
+                        return (
+                            <div className='col-lg-4' key={sliceId}>
+                                <Slice idx={sliceId} />
+                            </div>
+                        )
+                    })}
+            </div>
+        );
+    }
 }
 
-
-export default connect(mapState)(App);
+export default App;
