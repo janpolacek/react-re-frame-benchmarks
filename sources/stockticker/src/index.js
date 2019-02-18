@@ -2,10 +2,11 @@ import React, {unstable_Profiler as Profiler} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import 'fps-emit';
+import 'fps-emit'
 import './handlers';
 import './subs';
 import {updateRandomPairInSlice} from './actions';
+
 
 const renderResults = [];
 window.renderResults = renderResults;
@@ -17,6 +18,7 @@ function onAppRendered(id, phase, actualTime, baseTime, startTime, commitTime, i
     }
     renderResults.push({id, phase, actualTime, baseTime, startTime, commitTime, interactions});
 }
+
 
 ReactDOM.render(
     <Profiler id="appProfiler" onRender={onAppRendered}>

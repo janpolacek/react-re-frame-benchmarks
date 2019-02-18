@@ -35,7 +35,7 @@ if (installTask.status > 0) {
   process.exit(installTask.status);
 }
 
-const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock') || s.includes('twitter'));
+const sources = readdirSync(join(__dirname, 'sources')).filter(s => s.includes('stock'));;
 sources.forEach(benchmark => {
   const src = join(__dirname, 'sources', benchmark);
   let cwd
