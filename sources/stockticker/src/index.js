@@ -5,8 +5,9 @@ import App from './App';
 import 'fps-emit';
 import './handlers';
 import './subs';
-import {updateRandomPairInSlice} from './actions';
+import {fillPairs, updateRandomPairInSlice} from './actions';
 
+fillPairs();
 
 const renderResults = [];
 window.renderResults = renderResults;
@@ -16,9 +17,9 @@ function onAppRendered(id, phase, actualTime, baseTime, startTime, commitTime, i
     if(!Array.isArray(interactions)) {
         interactions = [...interactions]
     }
+    console.warn('onAppRendered', id, phase, actualTime, baseTime, startTime, commitTime, interactions);
     renderResults.push({id, phase, actualTime, baseTime, startTime, commitTime, interactions});
 }
-
 
 ReactDOM.render(
     <Profiler id="appProfiler" onRender={onAppRendered}>
@@ -26,7 +27,6 @@ ReactDOM.render(
     </Profiler>,
     document.getElementById('root')
 );
-
 
 setInterval(updateRandomPairInSlice, 13);
 

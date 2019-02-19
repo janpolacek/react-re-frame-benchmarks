@@ -110,9 +110,9 @@ async function runBenchmarks() {
 
         const {reactTimingEntries} = fpsRunResults;
 
-        const [mountEntry, ...updateEntries] = reactTimingEntries;
+        const [mountEntry = {}, ...updateEntries] = reactTimingEntries;
 
-        const mountTime = mountEntry.actualTime;
+        const mountTime = mountEntry.actualTime || 0;
 
         const averageUpdateTime = updateEntries.reduce((sum, entry) => sum + entry.actualTime, 0) / updateEntries.length || 1;
 

@@ -21,8 +21,10 @@ function createPairs () {
     return pairs
 }
 
-export function fillPairs (slideId) {
-    reframe.dispatch(['fill-pairs', slideId, createPairs()])
+export function fillPairs () {
+    for(let i = 0; i < NUMBER_OF_SLICES; i++) {
+        reframe.dispatchSync(['fill-pairs', i, createPairs()])
+    }
 }
 
 export function updateRandomPairInSlice() {
