@@ -1,5 +1,5 @@
 # react-re-framejs-benchmarks
-Performance benchmark harness for React-Redux
+Performance benchmark harness for React-Re-Framejs
 
 This repo expects that you are using Yarn for package management.
 
