@@ -17,7 +17,6 @@ function onAppRendered(id, phase, actualTime, baseTime, startTime, commitTime, i
     if(!Array.isArray(interactions)) {
         interactions = [...interactions]
     }
-    console.warn('onAppRendered', id, phase, actualTime, baseTime, startTime, commitTime, interactions);
     renderResults.push({id, phase, actualTime, baseTime, startTime, commitTime, interactions});
 }
 
